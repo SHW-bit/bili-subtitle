@@ -6,9 +6,9 @@
       python bin/bsub.py check          # 验证登录态 / 自动续期
 
   日常使用:
-      python bin/bsub.py BV1GHh56VEzM             # 单集（可多个）
-      python bin/bsub.py --series 8930787         # 整个合集
-      python bin/bsub.py --mid 3546721751664904   # UP 主全部投稿
+      python bin/bsub.py BV1xx411c7mD             # 单集（可多个）
+      python bin/bsub.py --series <合集id>        # 整个合集
+      python bin/bsub.py --mid <UP主mid>          # UP 主全部投稿
       python bin/bsub.py <视频链接>                # 直接贴 URL
 
   输出: out/<BV>.subtitle.txt（[HH:MM:SS] 文本）与 out/<BV>.subtitle.srt
@@ -25,7 +25,6 @@ BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(BASE, "out")
 BIN = os.path.join(BASE, "bin")
 LIB = os.path.join(BIN, "bili_lib")
-MID_DEFAULT = 3546721751664904
 
 UA = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
@@ -366,7 +365,9 @@ def main():
         out("合集 %s 共 %d 集" % (args[1], len(lst)))
         targets = [b for b, _ in lst]
     elif args[0] == "--mid":
-        lst = list_mid(int(args[1]) if len(args) > 1 else MID_DEFAULT, cd)
+        if len(args) < 2:
+            out("用法: python bin/bsub.py --mid <UP主mid>"); return 2
+        lst = list_mid(int(args[1]), cd)
         out("UP 主共 %d 个投稿" % len(lst))
         targets = [b for b, _ in lst]
     else:

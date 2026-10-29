@@ -5,9 +5,9 @@
   python bin/set_sessdata.py                 # 从剪贴板读取（推荐）
   python bin/set_sessdata.py "SESSDATA=xxx"  # 直接传
   python bin/set_sessdata.py --check         # 只检查现有 sessdata.txt 是否有效
-  python bin/set_sessdata.py --series        # 用现有登录态抓 5 期字幕
+  python bin/set_sessdata.py --series <合集id>   # 用现有登录态抓整个合集
 
-写好后：python bin/bili_sub.py --series 8930787
+写好后：python bin/bili.py --series <合集id>
 """
 import json, os, sys, urllib.request
 
@@ -40,7 +40,11 @@ def main():
     args = sys.argv[1:]
 
     if "--series" in args:
-        os.execv(sys.executable, [sys.executable, os.path.join(BASE, "bin", "bili_sub.py"), "--series", "8930787"])
+        i = args.index("--series")
+        if i + 1 >= len(args):
+            out("用法: python bin/set_sessdata.py --series <合集id>"); return 2
+        os.execv(sys.executable, [sys.executable, os.path.join(BASE, "bin", "bili.py"),
+                                  "--series", args[i + 1]])
 
     if "--check" in args:
         if not os.path.isfile(P):
@@ -82,7 +86,7 @@ def main():
         f.write(sess + "\n")
     out("已写入 " + P)
     out("")
-    out("下一步: python bin/bili_sub.py --series 8930787")
+    out("下一步: python bin/bili.py --series <合集id>")
     return 0
 
 sys.exit(main())

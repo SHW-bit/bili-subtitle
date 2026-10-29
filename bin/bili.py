@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 """bili —— 一条命令拿到 B站视频文字稿
 
-    python bin/bili.py <BV号 / 视频链接 / 合集id>
-    python bin/bili.py --series 8930787
-    python bin/bili.py --mid 3546721751664904
+    python bin/bili.py BV1xx411c7mD                # 单个 BV 号
+    python bin/bili.py https://www.bilibili.com/video/BV1xx411c7mD
+    python bin/bili.py --series <合集id>            # 整个合集
 
 流程（全自动，无需人工介入）：
     1. 有登录态 -> 直接抓官方/AI 字幕（秒级）
