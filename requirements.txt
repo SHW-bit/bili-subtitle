@@ -1,0 +1,8 @@
+# 只用字幕功能：不需要装任何东西（纯标准库）
+
+# 本地转写兜底才需要：
+faster-whisper>=1.0
+yt-dlp>=2024.1.1
+
+# 可选：cookie 自动续期
+bilibili-api-python>=16.0

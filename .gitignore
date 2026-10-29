@@ -1,0 +1,24 @@
+# 凭据（绝对不要提交）
+bin/sessdata.txt
+bin/bili_cred.json
+bin/cookies.txt
+*.cookies
+.env
+
+# 输出
+out/
+dl/
+models/
+
+# 本地依赖
+bin/asrlib/
+bin/ytdlp_lib/
+bin/bili_lib/
+bin/ffmpeg.exe
+bin/__pycache__/
+__pycache__/
+*.pyc
+
+# 系统
+.DS_Store
+Thumbs.db
